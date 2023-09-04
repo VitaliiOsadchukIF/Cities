@@ -59,7 +59,8 @@ public class ShowGameWindow {
 
         moveButton.addActionListener(e -> processPlayerMove());
 
-        playerBoard.getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter");
+        playerBoard.getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER,
+                0), "enter");
         playerBoard.getActionMap().put("enter", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,10 +81,11 @@ public class ShowGameWindow {
             playerBoard.setText("");
             computerBoard.setText("");
 
-            gameFrame.dispose();
-            ShowInitialWindow.show();
-        });
+            JOptionPane.showMessageDialog(null, "Computer won!", "Notification", JOptionPane.INFORMATION_MESSAGE);
 
+            System.exit(0);
+
+        });
 
         playerBoard.setBounds(50, 50, 200, 30);
         computerBoard.setBounds(270, 50, 200, 30);
@@ -94,8 +96,6 @@ public class ShowGameWindow {
 
         label = new JLabel();
         label.setBounds(50,140,100,50);
-
-
 
         gameFrame.setLayout(null);
 
@@ -120,13 +120,16 @@ public class ShowGameWindow {
 
         if (move.isUserMoveValid(input)) {
             move.playGame(input);
-            label.setText("<html>Computer: "+ String.valueOf(move.getCountForComputer()) + "<br>Player: " + String.valueOf(move.getCountForPlayer()));
+            label.setText("<html>Computer: "+ String.valueOf(move.getCountForComputer())
+                    + "<br>Player: " + String.valueOf(move.getCountForPlayer()));
             playerBoard.setText(""); // Очистити поле вводу
             String computerMove = move.getComputerMove();
             computerBoard.setText(computerMove);
         } else {
             // Вивести повідомлення про помилку
-            JOptionPane.showMessageDialog(null, "The entered city is invalid or does not comply with the rules. Please enter another city.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,
+                    "The entered city is invalid or does not comply with the rules. Please enter another city.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             playerBoard.setText(""); // Очистити поле вводу
         }
     }

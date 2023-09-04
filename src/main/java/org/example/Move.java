@@ -9,8 +9,8 @@ import java.util.HashSet;
 
 public class Move {
 
-    private static ArrayList<String> cities;  // ідея підказує щоб доставити static
-    private static HashSet<String> usedCities;  // ідея підказує щоб доставити static
+    private static ArrayList<String> cities;
+    private static HashSet<String> usedCities;
     private String lastCity;
     private int countForPlayer = 0;
 
@@ -37,29 +37,18 @@ public class Move {
 
         // Хід гравця
 
-//        usedCities.add(input);
-//        lastCity = input;
-
-
-            if (!cities.contains(input)) {
-                System.out.println("інше місто");
-            }
-
+        if (!cities.contains(input)) {
+            System.out.println("інше місто");
+        }
 
         if (isUserMoveValid(input) || lastCity != null) {
             usedCities.add(input);
             countForPlayer++;
             lastCity = input;
-        } // else if (input.equals("I give up")) {
-//            // повідомлення в інтерфейс про програш гравця
+        }
     }
-//        }
-
-
-
 
     public String getComputerMove() {
-
 
         String nextCity = "";
 
@@ -80,7 +69,6 @@ public class Move {
         return getComputerMove();
     }
 
-
     public boolean isUserMoveValid(String userCity) {
         if (usedCities.isEmpty()) {
             // Перший хід гравця може бути будь-яким містом
@@ -98,6 +86,4 @@ public class Move {
             return cities.contains(userCity);
         }
     }
-
-
 }
