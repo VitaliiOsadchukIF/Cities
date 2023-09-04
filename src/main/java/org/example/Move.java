@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 public class Move {
 
-    private  ArrayList<String> cities;
+    private ArrayList<String> cities;
     private HashSet<String> usedCities;
     private String lastCity;
     private int countForPlayer = 0;
@@ -15,9 +15,11 @@ public class Move {
     public int getCountForPlayer() {
         return countForPlayer;
     }
+
     public int getCountForComputer() {
         return countForComputer;
     }
+
     private int countForComputer = 0;
 
     public Move() {
