@@ -19,6 +19,7 @@ public class ShowGameWindow {
     private static JButton skipButton;
     private static JButton moveButton;
     private static JButton surrenderButton;
+    private static JLabel label;
 
     public static void show() {
         JFrame gameFrame = new JFrame("City Game");
@@ -67,9 +68,12 @@ public class ShowGameWindow {
         });
 
         skipButton.addActionListener(e -> {
-            computerBoard.setText("");
-            String computerMove = move.skip();
-            computerBoard.setText(computerBoard.getText() + computerMove + "\n");
+            if (!computerBoard.getText().isEmpty()) {
+                String computerMove = move.skip(); // редагував код Віталія!!
+                computerBoard.setText(computerMove); // редагував код Віталія
+            } else {
+                new Winner().cityNotFound();
+            }
         });
 
         surrenderButton.addActionListener(e -> {
@@ -88,6 +92,11 @@ public class ShowGameWindow {
         surrenderButton.setBounds(230, 100, 100, 30);
         playerBoard.setCaretColor(Color.blue);
 
+        label = new JLabel();
+        label.setBounds(50,140,100,50);
+
+
+
         gameFrame.setLayout(null);
 
         gameFrame.add(playerBoard);
@@ -95,6 +104,7 @@ public class ShowGameWindow {
         gameFrame.add(moveButton);
         gameFrame.add(skipButton);
         gameFrame.add(surrenderButton);
+        gameFrame.add(label);
 
         gameFrame.getContentPane().setBackground(Color.GRAY);
 
@@ -105,11 +115,19 @@ public class ShowGameWindow {
         String input = playerBoard.getText().trim();
         playerBoard.setText("");
 
-        String str = new Winner().userHasGivenUp(input);
-        computerBoard.setText(str);
+        new Winner().userHasGivenUp(input);
 
-        move.playGame(input);
-        String responseFromComputer = move.getComputerMove();
-        computerBoard.setText(responseFromComputer);
+
+        if (move.isUserMoveValid(input)) {
+            move.playGame(input);
+            label.setText("<html>Computer: "+ String.valueOf(move.getCountForComputer()) + "<br>Player: " + String.valueOf(move.getCountForPlayer()));
+            playerBoard.setText(""); // Очистити поле вводу
+            String computerMove = move.getComputerMove();
+            computerBoard.setText(computerMove);
+        } else {
+            // Вивести повідомлення про помилку
+            JOptionPane.showMessageDialog(null, "The entered city is invalid or does not comply with the rules. Please enter another city.", "Error", JOptionPane.ERROR_MESSAGE);
+            playerBoard.setText(""); // Очистити поле вводу
+        }
     }
 }
