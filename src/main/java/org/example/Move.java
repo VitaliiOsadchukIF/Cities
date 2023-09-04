@@ -15,31 +15,24 @@ public class Move {
     public int getCountForPlayer() {
         return countForPlayer;
     }
-
     public int getCountForComputer() {
         return countForComputer;
     }
-
     private int countForComputer = 0;
-
 
     public Move() {
         cities = new ArrayList<>();
         usedCities = new HashSet<>();
         GsonParser gsonParser = new GsonParser();
         cities.addAll(gsonParser.getCityNames());
-
     }
 
     public void playGame(String input) {
 
         // Хід гравця
-
         if (!cities.contains(input)) {
             System.out.println("інше місто");
         }
-
-
         if (isUserMoveValid(input) || lastCity != null) {
             usedCities.add(input);
             countForPlayer++;
@@ -57,7 +50,6 @@ public class Move {
                 break;
             }
         }
-
         lastCity = nextCity;
         countForComputer++;
         usedCities.add(nextCity);
@@ -77,11 +69,9 @@ public class Move {
             if (usedCities.contains(userCity)) {
                 return false;
             }
-
             if (!userCity.toLowerCase().startsWith(lastCity.substring(lastCity.length() - 1).toLowerCase())) {
                 return false;
             }
-
             return cities.contains(userCity);
         }
     }
