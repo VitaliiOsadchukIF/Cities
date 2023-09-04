@@ -2,6 +2,8 @@ package org.example;
 
 //import org.example.database.GsonParser;
 
+import org.example.database.GsonParser;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -10,13 +12,24 @@ public class Move {
     private static ArrayList<String> cities;  // ідея підказує щоб доставити static
     private static HashSet<String> usedCities;  // ідея підказує щоб доставити static
     private String lastCity;
+    private int countForPlayer = 0;
+
+    public int getCountForPlayer() {
+        return countForPlayer;
+    }
+
+    public int getCountForComputer() {
+        return countForComputer;
+    }
+
+    private int countForComputer = 0;
 
 
     public Move() {
         cities = new ArrayList<>();
         usedCities = new HashSet<>();
-//        GsonParser gsonParser = new GsonParser();
-//        cities.addAll(gsonParser.getCityNames());
+        GsonParser gsonParser = new GsonParser();
+        cities.addAll(gsonParser.getCityNames());
 
     }
 
@@ -35,6 +48,7 @@ public class Move {
 
         if (isUserMoveValid(input) || lastCity != null) {
             usedCities.add(input);
+            countForPlayer++;
             lastCity = input;
         } // else if (input.equals("I give up")) {
 //            // повідомлення в інтерфейс про програш гравця
@@ -57,6 +71,7 @@ public class Move {
         }
 
         lastCity = nextCity;
+        countForComputer++;
         usedCities.add(nextCity);
         return nextCity;
     }
