@@ -7,8 +7,8 @@ import java.util.HashSet;
 
 public class Move {
 
-    private static ArrayList<String> cities;
-    private static HashSet<String> usedCities;
+    private  ArrayList<String> cities;
+    private HashSet<String> usedCities;
     private String lastCity;
     private int countForPlayer = 0;
 
@@ -38,6 +38,7 @@ public class Move {
         if (!cities.contains(input)) {
             System.out.println("інше місто");
         }
+
 
         if (isUserMoveValid(input) || lastCity != null) {
             usedCities.add(input);
