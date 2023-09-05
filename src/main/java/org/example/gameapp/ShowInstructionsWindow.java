@@ -41,3 +41,4 @@ public class ShowInstructionsWindow {
         instructionsFrame.setVisible(true);
     }
 }
+

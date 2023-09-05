@@ -50,3 +50,4 @@ public class ShowInitialWindow {
         initialFrame.setVisible(true);
     }
 }
+

@@ -12,3 +12,4 @@ public class Main {
         SwingUtilities.invokeLater(ShowInitialWindow::show);
     }
 }
+
