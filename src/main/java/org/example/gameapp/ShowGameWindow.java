@@ -2,7 +2,6 @@ package org.example.gameapp;
 
 import org.example.Move;
 import org.example.Winner;
-
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -73,12 +72,12 @@ public class ShowGameWindow {
 
         skipButton.addActionListener(e -> {
             if (!computerBoard.getText().isEmpty()) {
-                String computerMove = move.skip(); // редагував код Віталія!!
-                computerBoard.setText(computerMove); // редагував код Віталія
+                String computerMove = move.skip();
+                computerBoard.setText(computerMove);
             } else {
                 new Winner().cityNotFound();
             }
-            label.setText("<html>Computer: "+ String.valueOf(move.getCountForComputer())
+            label.setText("<html>Computer: " + String.valueOf(move.getCountForComputer())
                     + "<br>Player: " + String.valueOf(move.getCountForPlayer()));
         });
 
@@ -100,18 +99,17 @@ public class ShowGameWindow {
         playerBoard.setCaretColor(Color.blue);
 
         label = new JLabel();
-        label.setBounds(51,140,100,50);
+        label.setBounds(51, 140, 100, 50);
 
         playerL = new JLabel("player");
         computerL = new JLabel("computer");
 
-        playerL.setBounds(50,15,200,30);
-        computerL.setBounds(270,15,200,30);
-        playerL.setFont(new Font("Arial",Font.PLAIN,14));
-        computerL.setFont(new Font("Arial",Font.PLAIN,14));
+        playerL.setBounds(50, 15, 200, 30);
+        computerL.setBounds(270, 15, 200, 30);
+        playerL.setFont(new Font("Arial", Font.PLAIN, 14));
+        computerL.setFont(new Font("Arial", Font.PLAIN, 14));
 
         gameFrame.setLayout(null);
-
         gameFrame.add(playerBoard);
         gameFrame.add(computerBoard);
         gameFrame.add(moveButton);
@@ -120,10 +118,7 @@ public class ShowGameWindow {
         gameFrame.add(label);
         gameFrame.add(playerL);
         gameFrame.add(computerL);
-
-
         gameFrame.getContentPane().setBackground(Color.GRAY);
-
         gameFrame.setVisible(true);
     }
 
@@ -133,20 +128,20 @@ public class ShowGameWindow {
 
         new Winner().userHasGivenUp(input);
 
-
         if (move.isUserMoveValid(input)) {
             move.playGame(input);
-            label.setText("<html>Computer: "+ String.valueOf(move.getCountForComputer())
+            label.setText("<html>Computer: " + String.valueOf(move.getCountForComputer())
                     + "<br>Player: " + String.valueOf(move.getCountForPlayer()));
-            playerBoard.setText(""); // Очистити поле вводу
+            playerBoard.setText("");
             String computerMove = move.getComputerMove();
             computerBoard.setText(computerMove);
         } else {
-            // Вивести повідомлення про помилку
+
             JOptionPane.showMessageDialog(null,
                     "The entered city is invalid or does not comply with the rules. Please enter another city.",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            playerBoard.setText(""); // Очистити поле вводу
+            playerBoard.setText("");
         }
     }
 }
+

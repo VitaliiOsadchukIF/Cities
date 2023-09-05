@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.database.GsonParser;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -30,8 +29,6 @@ public class Move {
     }
 
     public void playGame(String input) {
-
-        // Хід гравця
         if (!cities.contains(input)) {
             System.out.println("інше місто");
         }
@@ -43,7 +40,6 @@ public class Move {
     }
 
     public String getComputerMove() {
-
         String nextCity = "";
         for (String city : cities) {
             if (isUserMoveValid(city)) {
@@ -63,10 +59,10 @@ public class Move {
 
     public boolean isUserMoveValid(String userCity) {
         if (usedCities.isEmpty()) {
-            // Перший хід гравця може бути будь-яким містом
+
             return cities.contains(userCity);
         } else {
-            // Перевірка наступних ходів гравця
+
             if (usedCities.contains(userCity)) {
                 return false;
             }
@@ -77,3 +73,4 @@ public class Move {
         }
     }
 }
+

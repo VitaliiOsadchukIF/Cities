@@ -2,7 +2,6 @@ package org.example.database;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -11,13 +10,9 @@ import java.util.List;
 
 public class GsonParser {
     private List<String> cityNames;
-
-
-    public List<String> getCityNames(){
+    public List<String> getCityNames() {
         return parseJsonFromFile();
     }
-
-
     private List<String> parseJsonFromFile() {
         Gson gson = new Gson();
         cityNames = new ArrayList<>();

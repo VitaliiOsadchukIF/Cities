@@ -18,16 +18,15 @@ public class ShowInitialWindow {
         Font labelFont = new Font("Arial", Font.BOLD, 12);
 
         JButton startButton = new JButton("OK");
-        startButton.setBounds(50,60,60,30);
+        startButton.setBounds(50, 60, 60, 30);
         startButton.setFont(buttonFont);
 
-
         JButton instructionsButton = new JButton("Instructions");
-        instructionsButton.setBounds(120,60,120,30);
+        instructionsButton.setBounds(120, 60, 120, 30);
         instructionsButton.setFont(buttonFont);
 
         JLabel startLabel = new JLabel("<html>Welcome to the game of childhood and <br>all smart people");
-        startLabel.setBounds(10,10,250,40);
+        startLabel.setBounds(10, 10, 250, 40);
         startLabel.setFont(labelFont);
 
         startButton.addActionListener(e -> {
@@ -51,3 +50,4 @@ public class ShowInitialWindow {
         initialFrame.setVisible(true);
     }
 }
+
