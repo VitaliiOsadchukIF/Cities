@@ -10,6 +10,5 @@ public class Main {
         GsonParser gsonParser = new GsonParser();
         System.out.println(gsonParser.getCityNames());
         SwingUtilities.invokeLater(ShowInitialWindow::show);
-
     }
 }
