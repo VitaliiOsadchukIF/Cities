@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Winner {
     public void userHasGivenUp(String textFromTextField) {
         if (textFromTextField.equals("I give up")) {
-            JOptionPane.showMessageDialog(null, "Computer won!", "Notification",
+            JOptionPane.showMessageDialog(null, "Every defeat is another step towards victory. \n This time the computer won", "Notification",
                     JOptionPane.INFORMATION_MESSAGE);
         }
     }

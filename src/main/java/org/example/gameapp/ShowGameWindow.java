@@ -13,6 +13,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 public class ShowGameWindow {
+    private static JLabel playerL;
+    private static JLabel computerL;
+    private static final int MAXLENGTHSYMBOLS = 26;
     private static Move move = new Move();
     private static JTextField playerBoard;
     private static JTextField computerBoard;
@@ -24,7 +27,7 @@ public class ShowGameWindow {
     public static void show() {
         JFrame gameFrame = new JFrame("City Game");
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameFrame.setSize(600, 400);
+        gameFrame.setSize(600, 250);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width - gameFrame.getWidth()) / 2;
@@ -51,7 +54,7 @@ public class ShowGameWindow {
                     throws BadLocationException {
                 int currentLength = fb.getDocument().getLength();
                 int insertLength = text.length();
-                if (currentLength + insertLength <= 26) {
+                if (currentLength + insertLength <= MAXLENGTHSYMBOLS) {
                     super.replace(fb, offset, length, text, attrs);
                 }
             }
@@ -75,13 +78,15 @@ public class ShowGameWindow {
             } else {
                 new Winner().cityNotFound();
             }
+            label.setText("<html>Computer: "+ String.valueOf(move.getCountForComputer())
+                    + "<br>Player: " + String.valueOf(move.getCountForPlayer()));
         });
 
         surrenderButton.addActionListener(e -> {
             playerBoard.setText("");
             computerBoard.setText("");
 
-            JOptionPane.showMessageDialog(null, "Computer won!", "Notification", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Every defeat is another step towards victory. \n This time the computer won", "Notification", JOptionPane.INFORMATION_MESSAGE);
 
             System.exit(0);
 
@@ -95,7 +100,15 @@ public class ShowGameWindow {
         playerBoard.setCaretColor(Color.blue);
 
         label = new JLabel();
-        label.setBounds(50,140,100,50);
+        label.setBounds(51,140,100,50);
+
+        playerL = new JLabel("player");
+        computerL = new JLabel("computer");
+
+        playerL.setBounds(50,15,200,30);
+        computerL.setBounds(270,15,200,30);
+        playerL.setFont(new Font("Arial",Font.PLAIN,14));
+        computerL.setFont(new Font("Arial",Font.PLAIN,14));
 
         gameFrame.setLayout(null);
 
@@ -105,6 +118,9 @@ public class ShowGameWindow {
         gameFrame.add(skipButton);
         gameFrame.add(surrenderButton);
         gameFrame.add(label);
+        gameFrame.add(playerL);
+        gameFrame.add(computerL);
+
 
         gameFrame.getContentPane().setBackground(Color.GRAY);
 
