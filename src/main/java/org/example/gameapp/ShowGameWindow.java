@@ -12,9 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 public class ShowGameWindow {
+    private static final int MAXLENGTHSYMBOLS = 26;
     private static JLabel playerL;
     private static JLabel computerL;
-    private static final int MAXLENGTHSYMBOLS = 26;
     private static Move move = new Move();
     private static JTextField playerBoard;
     private static JTextField computerBoard;
@@ -22,10 +22,11 @@ public class ShowGameWindow {
     private static JButton moveButton;
     private static JButton surrenderButton;
     private static JLabel label;
+    private static String arielFont = "Ariel";
 
     public static void show() {
         JFrame gameFrame = new JFrame("City Game");
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         gameFrame.setSize(600, 250);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -43,7 +44,7 @@ public class ShowGameWindow {
         computerBoard.setEditable(false);
         playerBoard.setEditable(true);
 
-        Font inputFont = new Font("Arial", Font.PLAIN, 14);
+        Font inputFont = new Font(arielFont, Font.PLAIN, 14);
         playerBoard.setFont(inputFont);
         computerBoard.setFont(inputFont);
 
@@ -71,12 +72,13 @@ public class ShowGameWindow {
         });
 
         skipButton.addActionListener(e -> {
-            if (!computerBoard.getText().isEmpty()) {
                 String computerMove = move.skip();
+                new Winner().cityNotFound(computerMove);
+
                 computerBoard.setText(computerMove);
-            } else {
-                new Winner().cityNotFound();
-            }
+
+
+
             label.setText("<html>Computer: " + String.valueOf(move.getCountForComputer())
                     + "<br>Player: " + String.valueOf(move.getCountForPlayer()));
         });
@@ -134,6 +136,9 @@ public class ShowGameWindow {
                     + "<br>Player: " + String.valueOf(move.getCountForPlayer()));
             playerBoard.setText("");
             String computerMove = move.getComputerMove();
+
+            new Winner().isPlayerWon(computerMove);
+
             computerBoard.setText(computerMove);
         } else {
 

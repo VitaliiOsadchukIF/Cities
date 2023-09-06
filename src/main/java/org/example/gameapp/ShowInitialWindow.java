@@ -6,7 +6,7 @@ import java.awt.*;
 public class ShowInitialWindow {
     public static void show() {
         JFrame initialFrame = new JFrame("City Game");
-        initialFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        initialFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         initialFrame.setSize(400, 137);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

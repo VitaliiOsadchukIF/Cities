@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.database.GsonParser;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -10,6 +11,7 @@ public class Move {
     private HashSet<String> usedCities;
     private String lastCity;
     private int countForPlayer = 0;
+    private int countForComputer = 0;
 
     public int getCountForPlayer() {
         return countForPlayer;
@@ -18,8 +20,6 @@ public class Move {
     public int getCountForComputer() {
         return countForComputer;
     }
-
-    private int countForComputer = 0;
 
     public Move() {
         cities = new ArrayList<>();
